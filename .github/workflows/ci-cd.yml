@@ -1,8 +1,8 @@
-name: CI-CD Pipeline
+name: git@github.com:rajesh9097/hcl-quarkus-assignment.git
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
 
