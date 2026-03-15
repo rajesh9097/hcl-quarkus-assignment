@@ -2,24 +2,31 @@ package com.fulfilment.application.monolith.stores;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.jboss.logging.Logger;
 
 @Path("store")
@@ -36,9 +43,48 @@ public class StoreResource {
 
   private static final Logger LOGGER = Logger.getLogger(StoreResource.class.getName());
 
+
   @GET
   public List<Store> get() {
     return Store.listAll(Sort.by("name"));
+  }
+
+  @GET
+  @Path("filter")
+  public Map<String, Object> getStores(
+          @QueryParam("page") Integer page,
+          @QueryParam("size") Integer size,
+          @QueryParam("name") String name,
+          @QueryParam("minStock") Integer minStock) {
+
+    if(page == null) page = 0;
+    if(size == null) size = 5;
+
+    String query = "1=1";
+    Map<String, Object> params = new HashMap<>();
+
+    if(name != null && !name.isEmpty()) {
+      query += " and lower(name) like :name";
+      params.put("name", "%" + name.toLowerCase() + "%");
+    }
+
+    if(minStock != null) {
+      query += " and quantityProductsInStock >= :minStock";
+      params.put("minStock", minStock);
+    }
+
+    PanacheQuery<Store> storeQuery = Store.find(query, params)
+            .page(Page.of(page, size));
+
+    List<Store> stores = storeQuery.list();
+
+    Map<String, Object> response = new HashMap<>();
+    response.put("data", stores);
+    response.put("currentPage", page);
+    response.put("totalPages", storeQuery.pageCount());
+    response.put("totalRecords", storeQuery.count());
+
+    return response;
   }
 
   @GET
