@@ -14,6 +14,8 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -26,6 +28,7 @@ public class WarehouseResourceImpl implements WarehouseResource {
   @Inject private ArchiveWarehouseOperation archiveWarehouseOperation;
   @Inject private ReplaceWarehouseOperation replaceWarehouseOperation;
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(WarehouseResourceImpl.class);
   @Override
   public List<Warehouse> listAllWarehousesUnits() {
     return warehouseRepository.getAll().stream().map(this::toWarehouseResponse).toList();
@@ -107,6 +110,7 @@ public class WarehouseResourceImpl implements WarehouseResource {
 
   @Override
   public Response searchAndFilterWarehouses(String location, BigInteger minCapacity, BigInteger maxCapacity, String sortBy, String sortOrder, BigInteger page, BigInteger pageSize) {
+    LOGGER.info("start : searchAndFilterWarehouses()", "location: {}, minCapacity: {}, maxCapacity: {}, sortBy: {}, sortOrder: {}, page: {}, pageSize: {}");
     // Set default values for optional parameters
     String sortField = (sortBy != null) ? sortBy : "createdAt";
     String sortDirection = (sortOrder != null && sortOrder.equalsIgnoreCase("desc")) ? "desc" : "asc";
@@ -124,11 +128,6 @@ public class WarehouseResourceImpl implements WarehouseResource {
             pageSizeNumber
     );
 
-    // Map domain model to API model
-    /*List<Warehouse> warehouseResponses = warehouses.stream()
-            .map(this::toWarehouseResponse)
-            .toList();*/
-
     // Build paginated response using PageResult
     long totalElements = warehouseRepository.count(); // Total number of warehouses
     int totalPages = (int) Math.ceil((double) totalElements / pageSizeNumber);
@@ -140,7 +139,7 @@ public class WarehouseResourceImpl implements WarehouseResource {
             pageNumber,
             pageSizeNumber
     );
-
+    LOGGER.info("Rsponse : searchAndFilterWarehouses()", "totalElements: {}, totalPages: {}, pageNumber: {}, pageSize: {}");
     return Response.ok(response).build();
   }
 

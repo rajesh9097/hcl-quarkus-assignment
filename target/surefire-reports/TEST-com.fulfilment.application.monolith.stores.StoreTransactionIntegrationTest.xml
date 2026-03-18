@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest" time="2.352" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest" time="2.495" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="test.url" value="http://localhost:8081"/>
@@ -19,7 +19,7 @@
     <property name="groovy.use.classvalue" value="false"/>
     <property name="mp.openapi.extensions.smallrye.defaultProduces" value="application/json"/>
     <property name="sun.boot.library.path" value="/Users/rajeshsahoo/Documents/jdk17/jdk-17.0.9.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260310132334465_3.jar /Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire 2026-03-10T13-23-34_278-jvmRun1 surefire-20260310132334465_1tmp surefire_0-20260310132334465_2tmp"/>
+    <property name="sun.java.command" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260318181040187_3.jar /Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire 2026-03-18T18-10-39_984-jvmRun1 surefire-20260318181040187_1tmp surefire_0-20260318181040187_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="maven.home" value="/Users/rajeshsahoo/.m2/wrapper/dists/apache-maven-3.8.6-bin/1ks0nkde5v1pk9vtc31i9d0lcd/apache-maven-3.8.6"/>
@@ -40,7 +40,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260310132334465_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260318181040187_3.jar"/>
     <property name="mp.openapi.extensions.smallrye.defaultStreamingConsumes" value="application/octet-stream"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
@@ -72,16 +72,16 @@
     <property name="vertx.disableTCCL" value="true"/>
     <property name="java.vm.version" value="17.0.9+11-LTS-201"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="io.netty.machineId" value="48:87:76:ee:8e:77:f6:6c"/>
+    <property name="io.netty.machineId" value="9d:b1:07:e6:d7:77:51:2b"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
     <property name="mp.openapi.extensions.smallrye.defaultConsumes" value="application/json"/>
   </properties>
-  <testcase name="testLegacySystemNotNotifiedOnFailedStoreCreation" classname="com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest" time="2.346">
+  <testcase name="testLegacySystemNotNotifiedOnFailedStoreCreation" classname="com.fulfilment.application.monolith.stores.StoreTransactionIntegrationTest" time="2.485">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         &amp#27;[34mnext&amp#27;[0m &amp#27;[34mvalue&amp#27;[0m &amp#27;[34mfor&amp#27;[0m Store_SEQ
-2026-03-10 13:24:14,198 INFO  [com.ful.app.mon.sto.StoreEventObserver] (executor-thread-2) Store created event received, syncing with legacy system: 4
+2026-03-18 18:11:38,430 INFO  [com.ful.app.mon.sto.StoreEventObserver] (executor-thread-2) Store created event received, syncing with legacy system: 4
 &amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34minsert&amp#27;[0m 
     &amp#27;[34minto&amp#27;[0m
@@ -96,11 +96,11 @@
         (name, quantityProductsInStock, id) 
     &amp#27;[34mvalues&amp#27;[0m
         (?, ?, ?)
-2026-03-10 13:24:15,260 INFO  [com.ful.app.mon.sto.StoreEventObserver] (executor-thread-2) Store created event received, syncing with legacy system: 5
-2026-03-10 13:24:15,265 WARN  [org.hib.eng.jdb.spi.SqlExceptionHelper] (executor-thread-1) SQL Error: 23505, SQLState: 23505
-2026-03-10 13:24:15,266 ERROR [org.hib.eng.jdb.spi.SqlExceptionHelper] (executor-thread-1) Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773129253953' )"; SQL statement:
+2026-03-18 18:11:39,516 INFO  [com.ful.app.mon.sto.StoreEventObserver] (executor-thread-2) Store created event received, syncing with legacy system: 5
+2026-03-18 18:11:39,522 WARN  [org.hib.eng.jdb.spi.SqlExceptionHelper] (executor-thread-1) SQL Error: 23505, SQLState: 23505
+2026-03-18 18:11:39,523 ERROR [org.hib.eng.jdb.spi.SqlExceptionHelper] (executor-thread-1) Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773837698080' )"; SQL statement:
 insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]
-2026-03-10 13:24:15,277 WARN  [com.arj.ats.arjuna] (executor-thread-1) ARJUNA012125: TwoPhaseCoordinator.beforeCompletion - failed for SynchronizationImple< 0:ffff0a943dce:c2ff:69afce24:19, org.hibernate.resource.transaction.backend.jta.internal.synchronization.RegisteredSynchronization@2fad731c >: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773129253953' )"; SQL statement:
+2026-03-18 18:11:39,543 WARN  [com.arj.ats.arjuna] (executor-thread-1) ARJUNA012125: TwoPhaseCoordinator.beforeCompletion - failed for SynchronizationImple< 0:ffffc0a80105:c418:69ba9d80:19, org.hibernate.resource.transaction.backend.jta.internal.synchronization.RegisteredSynchronization@5733f33b >: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773837698080' )"; SQL statement:
 insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]] [insert into Store (name,quantityProductsInStock,id) values (?,?,?)]
 	at org.hibernate.dialect.H2Dialect.lambda$buildSQLExceptionConversionDelegate$3(H2Dialect.java:746)
 	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
@@ -157,7 +157,7 @@ insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]] 
 	at org.jboss.threads.ThreadLocalResettingRunnable.run(ThreadLocalResettingRunnable.java:11)
 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773129253953' )"; SQL statement:
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773837698080' )"; SQL statement:
 insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:520)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
@@ -178,7 +178,7 @@ insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194)
 	... 51 more
 
-2026-03-10 13:24:15,283 ERROR [com.ful.app.mon.sto.StoreResource] (executor-thread-1) Failed to handle request: io.quarkus.arc.ArcUndeclaredThrowableException: Error invoking subclass method
+2026-03-18 18:11:39,552 ERROR [com.ful.app.mon.pro.ProductResource] (executor-thread-1) Failed to handle request: io.quarkus.arc.ArcUndeclaredThrowableException: Error invoking subclass method
 	at com.fulfilment.application.monolith.stores.StoreResource_Subclass.create(Unknown Source)
 	at com.fulfilment.application.monolith.stores.StoreResource_ClientProxy.create(Unknown Source)
 	at com.fulfilment.application.monolith.stores.StoreResource$quarkusrestinvoker$create_f3a56c1eccbd1365661f1c3dacd084472e6cb0ef.invoke(Unknown Source)
@@ -208,7 +208,7 @@ Caused by: jakarta.transaction.RollbackException: ARJUNA016053: Could not commit
 	at io.quarkus.arc.impl.AroundInvokeInvocationContext.perform(AroundInvokeInvocationContext.java:30)
 	at io.quarkus.arc.impl.InvocationContexts.performAroundInvoke(InvocationContexts.java:27)
 	... 14 more
-Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773129253953' )"; SQL statement:
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773837698080' )"; SQL statement:
 insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]] [insert into Store (name,quantityProductsInStock,id) values (?,?,?)]
 	at org.hibernate.dialect.H2Dialect.lambda$buildSQLExceptionConversionDelegate$3(H2Dialect.java:746)
 	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
@@ -240,7 +240,7 @@ insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]] 
 	at com.arjuna.ats.arjuna.AtomicAction.commit(AtomicAction.java:135)
 	at com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionImple.commitAndDisassociate(TransactionImple.java:1290)
 	... 26 more
-Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773129253953' )"; SQL statement:
+Caused by: org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_4 ON PUBLIC.STORE(NAME NULLS FIRST) VALUES ( /* 4 */ 'IntegrationTest_1773837698080' )"; SQL statement:
 insert into Store (name,quantityProductsInStock,id) values (?,?,?) [23505-224]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:520)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)

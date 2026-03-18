@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.fulfilment.application.monolith.products.ProductEndpointTest" time="31.174" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.fulfilment.application.monolith.products.ProductEndpointTest" time="48.445" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="test.url" value="http://localhost:8081"/>
@@ -19,7 +19,7 @@
     <property name="groovy.use.classvalue" value="false"/>
     <property name="mp.openapi.extensions.smallrye.defaultProduces" value="application/json"/>
     <property name="sun.boot.library.path" value="/Users/rajeshsahoo/Documents/jdk17/jdk-17.0.9.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260310132334465_3.jar /Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire 2026-03-10T13-23-34_278-jvmRun1 surefire-20260310132334465_1tmp surefire_0-20260310132334465_2tmp"/>
+    <property name="sun.java.command" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260318181040187_3.jar /Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire 2026-03-18T18-10-39_984-jvmRun1 surefire-20260318181040187_1tmp surefire_0-20260318181040187_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="maven.home" value="/Users/rajeshsahoo/.m2/wrapper/dists/apache-maven-3.8.6-bin/1ks0nkde5v1pk9vtc31i9d0lcd/apache-maven-3.8.6"/>
@@ -40,7 +40,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260310132334465_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260318181040187_3.jar"/>
     <property name="mp.openapi.extensions.smallrye.defaultStreamingConsumes" value="application/octet-stream"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
@@ -72,16 +72,16 @@
     <property name="vertx.disableTCCL" value="true"/>
     <property name="java.vm.version" value="17.0.9+11-LTS-201"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="io.netty.machineId" value="48:87:76:ee:8e:77:f6:6c"/>
+    <property name="io.netty.machineId" value="9d:b1:07:e6:d7:77:51:2b"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
     <property name="mp.openapi.extensions.smallrye.defaultConsumes" value="application/json"/>
   </properties>
-  <testcase name="testCrudProduct" classname="com.fulfilment.application.monolith.products.ProductEndpointTest" time="9.459">
-    <system-out><![CDATA[2026-03-10 13:23:57,905 INFO  [io.qua.dev.h2.dep.H2DevServicesProcessor] (build-3) Dev Services for H2 started.
-2026-03-10 13:23:57,919 INFO  [io.qua.dat.dep.dev.DevServicesDatasourceProcessor] (build-3) Dev Services for default datasource (h2) started
-2026-03-10 13:23:58,907 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.openapi.generator.spec" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
-2026-03-10 13:23:58,909 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.openapi.generator.base-package" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+  <testcase name="testCrudProduct" classname="com.fulfilment.application.monolith.products.ProductEndpointTest" time="11.945">
+    <system-out><![CDATA[2026-03-18 18:11:14,349 INFO  [io.qua.dev.h2.dep.H2DevServicesProcessor] (build-33) Dev Services for H2 started.
+2026-03-18 18:11:14,385 INFO  [io.qua.dat.dep.dev.DevServicesDatasourceProcessor] (build-33) Dev Services for default datasource (h2) started
+2026-03-18 18:11:15,875 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.openapi.generator.spec" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+2026-03-18 18:11:15,876 WARN  [io.qua.config] (main) Unrecognized configuration key "quarkus.openapi.generator.base-package" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
 &amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mdrop&amp#27;[0m &amp#27;[34mtable&amp#27;[0m &amp#27;[34mif&amp#27;[0m &amp#27;[34mexists&amp#27;[0m Product &amp#27;[34mcascade&amp#27;[0m 
 &amp#27;[35m[Hibernate]&amp#27;[0m 
@@ -140,9 +140,9 @@
 &amp#27;[35m[Hibernate]&amp#27;[0m &amp#27;[34mINSERT&amp#27;[0m &amp#27;[34mINTO&amp#27;[0m warehouse(id, businessUnitCode, location, capacity, stock, createdAt, archivedAt) &amp#27;[34mVALUES&amp#27;[0m (2, &amp#27;[36m'MWH.012'&amp#27;[0m, &amp#27;[36m'AMSTERDAM-001'&amp#27;[0m, 50, 5, &amp#27;[36m'2023-07-01'&amp#27;[0m, &amp#27;[34mnull&amp#27;[0m)
 &amp#27;[35m[Hibernate]&amp#27;[0m &amp#27;[34mINSERT&amp#27;[0m &amp#27;[34mINTO&amp#27;[0m warehouse(id, businessUnitCode, location, capacity, stock, createdAt, archivedAt) &amp#27;[34mVALUES&amp#27;[0m (3, &amp#27;[36m'MWH.023'&amp#27;[0m, &amp#27;[36m'TILBURG-001'&amp#27;[0m, 30, 27, &amp#27;[36m'2021-02-01'&amp#27;[0m, &amp#27;[34mnull&amp#27;[0m)
 &amp#27;[35m[Hibernate]&amp#27;[0m &amp#27;[34mALTER&amp#27;[0m &amp#27;[34mSEQUENCE&amp#27;[0m warehouse_seq RESTART &amp#27;[34mWITH&amp#27;[0m 4
-2026-03-10 13:24:03,488 INFO  [io.quarkus] (main) java-code-assignment 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.13.3) started in 14.621s. Listening on: http://localhost:8081
-2026-03-10 13:24:03,521 INFO  [io.quarkus] (main) Profile test activated. 
-2026-03-10 13:24:03,522 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, hibernate-orm-panache, jdbc-h2, jdbc-postgresql, narayana-jta, rest, rest-jackson, smallrye-context-propagation, smallrye-openapi, swagger-ui, vertx]
+2026-03-18 18:11:25,305 INFO  [io.quarkus] (main) java-code-assignment 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.13.3) started in 24.297s. Listening on: http://localhost:8081
+2026-03-18 18:11:25,306 INFO  [io.quarkus] (main) Profile test activated. 
+2026-03-18 18:11:25,307 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, hibernate-orm-panache, jdbc-h2, jdbc-postgresql, narayana-jta, rest, rest-jackson, smallrye-context-propagation, smallrye-openapi, swagger-ui, vertx]
 &amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         p1_0.id,

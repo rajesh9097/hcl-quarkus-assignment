@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StoreResource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-code-assignment</a> &gt; <a href="index.source.html" class="el_package">com.fulfilment.application.monolith.stores</a> &gt; <span class="el_source">StoreResource.java</span></div><h1>StoreResource.java</h1><pre class="source lang-java linenums">package com.fulfilment.application.monolith.stores;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Page;
+import io.quarkus.panache.common.Sort;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.Event;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PATCH;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jboss.logging.Logger;
+
+@Path(&quot;store&quot;)
+@ApplicationScoped
+@Produces(&quot;application/json&quot;)
+@Consumes(&quot;application/json&quot;)
+<span class="nc" id="L36">public class StoreResource {</span>
+
+  @Inject LegacyStoreManagerGateway legacyStoreManagerGateway;
+  
+  @Inject Event&lt;StoreCreatedEvent&gt; storeCreatedEvent;
+  
+  @Inject Event&lt;StoreUpdatedEvent&gt; storeUpdatedEvent;
+
+<span class="nc" id="L44">  private static final Logger LOGGER = Logger.getLogger(StoreResource.class.getName());</span>
+
+
+  @GET
+  public List&lt;Store&gt; get() {
+<span class="nc" id="L49">    return Store.listAll(Sort.by(&quot;name&quot;));</span>
+  }
+
+  @GET
+  @Path(&quot;filter&quot;)
+  public Map&lt;String, Object&gt; getStores(
+          @QueryParam(&quot;page&quot;) Integer page,
+          @QueryParam(&quot;size&quot;) Integer size,
+          @QueryParam(&quot;name&quot;) String name,
+          @QueryParam(&quot;minStock&quot;) Integer minStock) {
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">    if(page == null) page = 0;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">    if(size == null) size = 5;</span>
+
+<span class="nc" id="L63">    String query = &quot;1=1&quot;;</span>
+<span class="nc" id="L64">    Map&lt;String, Object&gt; params = new HashMap&lt;&gt;();</span>
+
+<span class="nc bnc" id="L66" title="All 4 branches missed.">    if(name != null &amp;&amp; !name.isEmpty()) {</span>
+<span class="nc" id="L67">      query += &quot; and lower(name) like :name&quot;;</span>
+<span class="nc" id="L68">      params.put(&quot;name&quot;, &quot;%&quot; + name.toLowerCase() + &quot;%&quot;);</span>
+    }
+
+<span class="nc bnc" id="L71" title="All 2 branches missed.">    if(minStock != null) {</span>
+<span class="nc" id="L72">      query += &quot; and quantityProductsInStock &gt;= :minStock&quot;;</span>
+<span class="nc" id="L73">      params.put(&quot;minStock&quot;, minStock);</span>
+    }
+
+<span class="nc" id="L76">    PanacheQuery&lt;Store&gt; storeQuery = Store.find(query, params)</span>
+<span class="nc" id="L77">            .page(Page.of(page, size));</span>
+
+<span class="nc" id="L79">    List&lt;Store&gt; stores = storeQuery.list();</span>
+
+<span class="nc" id="L81">    Map&lt;String, Object&gt; response = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L82">    response.put(&quot;data&quot;, stores);</span>
+<span class="nc" id="L83">    response.put(&quot;currentPage&quot;, page);</span>
+<span class="nc" id="L84">    response.put(&quot;totalPages&quot;, storeQuery.pageCount());</span>
+<span class="nc" id="L85">    response.put(&quot;totalRecords&quot;, storeQuery.count());</span>
+
+<span class="nc" id="L87">    return response;</span>
+  }
+
+  @GET
+  @Path(&quot;{id}&quot;)
+  public Store getSingle(Long id) {
+<span class="nc" id="L93">    Store entity = Store.findById(id);</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    if (entity == null) {</span>
+<span class="nc" id="L95">      throw new WebApplicationException(&quot;Store with id of &quot; + id + &quot; does not exist.&quot;, 404);</span>
+    }
+<span class="nc" id="L97">    return entity;</span>
+  }
+
+  @POST
+  @Transactional
+  public Response create(Store store) {
+<span class="nc bnc" id="L103" title="All 2 branches missed.">    if (store.id != null) {</span>
+<span class="nc" id="L104">      throw new WebApplicationException(&quot;Id was invalidly set on request.&quot;, 422);</span>
+    }
+
+<span class="nc" id="L107">    store.persist();</span>
+<span class="nc" id="L108">    storeCreatedEvent.fireAsync(new StoreCreatedEvent(store));</span>
+
+<span class="nc" id="L110">    return Response.ok(store).status(201).build();</span>
+  }
+
+  @PUT
+  @Path(&quot;{id}&quot;)
+  @Transactional
+  public Store update(Long id, Store updatedStore) {
+<span class="nc bnc" id="L117" title="All 2 branches missed.">    if (updatedStore.name == null) {</span>
+<span class="nc" id="L118">      throw new WebApplicationException(&quot;Store Name was not set on request.&quot;, 422);</span>
+    }
+
+<span class="nc" id="L121">    Store entity = Store.findById(id);</span>
+
+<span class="nc bnc" id="L123" title="All 2 branches missed.">    if (entity == null) {</span>
+<span class="nc" id="L124">      throw new WebApplicationException(&quot;Store with id of &quot; + id + &quot; does not exist.&quot;, 404);</span>
+    }
+
+<span class="nc" id="L127">    entity.name = updatedStore.name;</span>
+<span class="nc" id="L128">    entity.quantityProductsInStock = updatedStore.quantityProductsInStock;</span>
+
+<span class="nc" id="L130">    storeUpdatedEvent.fireAsync(new StoreUpdatedEvent(entity));</span>
+
+<span class="nc" id="L132">    return entity;</span>
+  }
+
+  @PATCH
+  @Path(&quot;{id}&quot;)
+  @Transactional
+  public Store patch(Long id, Store updatedStore) {
+<span class="nc bnc" id="L139" title="All 2 branches missed.">    if (updatedStore.name == null) {</span>
+<span class="nc" id="L140">      throw new WebApplicationException(&quot;Store Name was not set on request.&quot;, 422);</span>
+    }
+
+<span class="nc" id="L143">    Store entity = Store.findById(id);</span>
+
+<span class="nc bnc" id="L145" title="All 2 branches missed.">    if (entity == null) {</span>
+<span class="nc" id="L146">      throw new WebApplicationException(&quot;Store with id of &quot; + id + &quot; does not exist.&quot;, 404);</span>
+    }
+
+<span class="nc bnc" id="L149" title="All 2 branches missed.">    if (entity.name != null) {</span>
+<span class="nc" id="L150">      entity.name = updatedStore.name;</span>
+    }
+
+<span class="nc bnc" id="L153" title="All 2 branches missed.">    if (entity.quantityProductsInStock != 0) {</span>
+<span class="nc" id="L154">      entity.quantityProductsInStock = updatedStore.quantityProductsInStock;</span>
+    }
+
+<span class="nc" id="L157">    storeUpdatedEvent.fireAsync(new StoreUpdatedEvent(entity));</span>
+
+<span class="nc" id="L159">    return entity;</span>
+  }
+
+  @DELETE
+  @Path(&quot;{id}&quot;)
+  @Transactional
+  public Response delete(Long id) {
+<span class="nc" id="L166">    Store entity = Store.findById(id);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">    if (entity == null) {</span>
+<span class="nc" id="L168">      throw new WebApplicationException(&quot;Store with id of &quot; + id + &quot; does not exist.&quot;, 404);</span>
+    }
+<span class="nc" id="L170">    entity.delete();</span>
+<span class="nc" id="L171">    return Response.status(204).build();</span>
+  }
+
+  @Provider
+<span class="nc" id="L175">  public static class ErrorMapper implements ExceptionMapper&lt;Exception&gt; {</span>
+
+    @Inject ObjectMapper objectMapper;
+
+    @Override
+    public Response toResponse(Exception exception) {
+<span class="nc" id="L181">      LOGGER.error(&quot;Failed to handle request&quot;, exception);</span>
+
+<span class="nc" id="L183">      int code = 500;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">      if (exception instanceof WebApplicationException) {</span>
+<span class="nc" id="L185">        code = ((WebApplicationException) exception).getResponse().getStatus();</span>
+      }
+
+<span class="nc" id="L188">      ObjectNode exceptionJson = objectMapper.createObjectNode();</span>
+<span class="nc" id="L189">      exceptionJson.put(&quot;exceptionType&quot;, exception.getClass().getName());</span>
+<span class="nc" id="L190">      exceptionJson.put(&quot;code&quot;, code);</span>
+
+<span class="nc bnc" id="L192" title="All 2 branches missed.">      if (exception.getMessage() != null) {</span>
+<span class="nc" id="L193">        exceptionJson.put(&quot;error&quot;, exception.getMessage());</span>
+      }
+
+<span class="nc" id="L196">      return Response.status(code).entity(exceptionJson).build();</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

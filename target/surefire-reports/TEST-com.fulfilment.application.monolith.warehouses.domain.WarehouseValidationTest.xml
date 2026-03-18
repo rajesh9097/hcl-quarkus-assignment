@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.778" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.518" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="test.url" value="http://localhost:8081"/>
@@ -19,7 +19,7 @@
     <property name="groovy.use.classvalue" value="false"/>
     <property name="mp.openapi.extensions.smallrye.defaultProduces" value="application/json"/>
     <property name="sun.boot.library.path" value="/Users/rajeshsahoo/Documents/jdk17/jdk-17.0.9.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260310132334465_3.jar /Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire 2026-03-10T13-23-34_278-jvmRun1 surefire-20260310132334465_1tmp surefire_0-20260310132334465_2tmp"/>
+    <property name="sun.java.command" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260318181040187_3.jar /Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire 2026-03-18T18-10-39_984-jvmRun1 surefire-20260318181040187_1tmp surefire_0-20260318181040187_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="maven.home" value="/Users/rajeshsahoo/.m2/wrapper/dists/apache-maven-3.8.6-bin/1ks0nkde5v1pk9vtc31i9d0lcd/apache-maven-3.8.6"/>
@@ -40,7 +40,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260310132334465_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/rajeshsahoo/Documents/hcl-assignment/hackathon-java-assignment/target/surefire/surefirebooter-20260318181040187_3.jar"/>
     <property name="mp.openapi.extensions.smallrye.defaultStreamingConsumes" value="application/octet-stream"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
@@ -72,12 +72,12 @@
     <property name="vertx.disableTCCL" value="true"/>
     <property name="java.vm.version" value="17.0.9+11-LTS-201"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="io.netty.machineId" value="48:87:76:ee:8e:77:f6:6c"/>
+    <property name="io.netty.machineId" value="9d:b1:07:e6:d7:77:51:2b"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
     <property name="mp.openapi.extensions.smallrye.defaultConsumes" value="application/json"/>
   </properties>
-  <testcase name="testInvalidCapacityScenarios(int, int, String, String)[1]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.427">
+  <testcase name="testInvalidCapacityScenarios(int, int, String, String)[1]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.248">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
@@ -96,7 +96,7 @@
         first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="testInvalidCapacityScenarios(int, int, String, String)[2]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.009">
+  <testcase name="testInvalidCapacityScenarios(int, int, String, String)[2]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.017">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
@@ -115,7 +115,7 @@
         first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="testInvalidCapacityScenarios(int, int, String, String)[3]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.017">
+  <testcase name="testInvalidCapacityScenarios(int, int, String, String)[3]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.022">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
@@ -134,7 +134,7 @@
         first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="testInvalidCapacityScenarios(int, int, String, String)[4]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.012">
+  <testcase name="testInvalidCapacityScenarios(int, int, String, String)[4]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.005">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
@@ -153,7 +153,7 @@
         first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="testInvalidLocationScenarios(String, String)[1]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.011">
+  <testcase name="testInvalidLocationScenarios(String, String)[1]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.008">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
@@ -172,7 +172,7 @@
         first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="testInvalidLocationScenarios(String, String)[2]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.011">
+  <testcase name="testInvalidLocationScenarios(String, String)[2]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.008">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
@@ -191,7 +191,7 @@
         first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="testInvalidLocationScenarios(String, String)[3]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.009">
+  <testcase name="testInvalidLocationScenarios(String, String)[3]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.011">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
@@ -210,49 +210,7 @@
         first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="testDuplicateBusinessUnitCode(String)[1]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.014">
-    <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
-    &amp#27;[34mselect&amp#27;[0m
-        dw1_0.id,
-        dw1_0.archivedAt,
-        dw1_0.businessUnitCode,
-        dw1_0.capacity,
-        dw1_0.createdAt,
-        dw1_0.location,
-        dw1_0.stock,
-        dw1_0.version 
-    &amp#27;[34mfrom&amp#27;[0m
-        warehouse dw1_0 
-    &amp#27;[34mwhere&amp#27;[0m
-        dw1_0.businessUnitCode=? 
-    &amp#27;[34mfetch&amp#27;[0m
-        first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
-&amp#27;[35m[Hibernate]&amp#27;[0m 
-    &amp#27;[34minsert&amp#27;[0m 
-    &amp#27;[34minto&amp#27;[0m
-        warehouse
-        (archivedAt, businessUnitCode, capacity, createdAt, location, stock, version, id) 
-    &amp#27;[34mvalues&amp#27;[0m
-        (?, ?, ?, ?, ?, ?, ?, ?)
-&amp#27;[35m[Hibernate]&amp#27;[0m 
-    &amp#27;[34mselect&amp#27;[0m
-        dw1_0.id,
-        dw1_0.archivedAt,
-        dw1_0.businessUnitCode,
-        dw1_0.capacity,
-        dw1_0.createdAt,
-        dw1_0.location,
-        dw1_0.stock,
-        dw1_0.version 
-    &amp#27;[34mfrom&amp#27;[0m
-        warehouse dw1_0 
-    &amp#27;[34mwhere&amp#27;[0m
-        dw1_0.businessUnitCode=? 
-    &amp#27;[34mfetch&amp#27;[0m
-        first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
-]]></system-out>
-  </testcase>
-  <testcase name="testDuplicateBusinessUnitCode(String)[2]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.012">
+  <testcase name="testDuplicateBusinessUnitCode(String)[1]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.015">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
@@ -294,7 +252,49 @@
         first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
 ]]></system-out>
   </testcase>
-  <testcase name="testDuplicateBusinessUnitCode(String)[3]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.016">
+  <testcase name="testDuplicateBusinessUnitCode(String)[2]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.014">
+    <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
+    &amp#27;[34mselect&amp#27;[0m
+        dw1_0.id,
+        dw1_0.archivedAt,
+        dw1_0.businessUnitCode,
+        dw1_0.capacity,
+        dw1_0.createdAt,
+        dw1_0.location,
+        dw1_0.stock,
+        dw1_0.version 
+    &amp#27;[34mfrom&amp#27;[0m
+        warehouse dw1_0 
+    &amp#27;[34mwhere&amp#27;[0m
+        dw1_0.businessUnitCode=? 
+    &amp#27;[34mfetch&amp#27;[0m
+        first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
+&amp#27;[35m[Hibernate]&amp#27;[0m 
+    &amp#27;[34minsert&amp#27;[0m 
+    &amp#27;[34minto&amp#27;[0m
+        warehouse
+        (archivedAt, businessUnitCode, capacity, createdAt, location, stock, version, id) 
+    &amp#27;[34mvalues&amp#27;[0m
+        (?, ?, ?, ?, ?, ?, ?, ?)
+&amp#27;[35m[Hibernate]&amp#27;[0m 
+    &amp#27;[34mselect&amp#27;[0m
+        dw1_0.id,
+        dw1_0.archivedAt,
+        dw1_0.businessUnitCode,
+        dw1_0.capacity,
+        dw1_0.createdAt,
+        dw1_0.location,
+        dw1_0.stock,
+        dw1_0.version 
+    &amp#27;[34mfrom&amp#27;[0m
+        warehouse dw1_0 
+    &amp#27;[34mwhere&amp#27;[0m
+        dw1_0.businessUnitCode=? 
+    &amp#27;[34mfetch&amp#27;[0m
+        first ? &amp#27;[34mrows&amp#27;[0m &amp#27;[34monly&amp#27;[0m
+]]></system-out>
+  </testcase>
+  <testcase name="testDuplicateBusinessUnitCode(String)[3]" classname="com.fulfilment.application.monolith.warehouses.domain.WarehouseValidationTest" time="0.015">
     <system-out><![CDATA[&amp#27;[35m[Hibernate]&amp#27;[0m 
     &amp#27;[34mselect&amp#27;[0m
         dw1_0.id,
