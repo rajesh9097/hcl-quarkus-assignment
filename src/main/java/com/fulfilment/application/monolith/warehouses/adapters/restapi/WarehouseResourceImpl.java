@@ -1,16 +1,21 @@
 package com.fulfilment.application.monolith.warehouses.adapters.restapi;
 
+import com.fulfilment.application.monolith.products.PageResult;
 import com.fulfilment.application.monolith.warehouses.adapters.database.WarehouseRepository;
 import com.fulfilment.application.monolith.warehouses.domain.ports.ArchiveWarehouseOperation;
 import com.fulfilment.application.monolith.warehouses.domain.ports.CreateWarehouseOperation;
 import com.fulfilment.application.monolith.warehouses.domain.ports.ReplaceWarehouseOperation;
 import com.warehouse.api.WarehouseResource;
 import com.warehouse.api.beans.Warehouse;
+import io.quarkus.panache.common.Page;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
+
+import java.math.BigInteger;
 import java.util.List;
 
 @RequestScoped
@@ -98,6 +103,45 @@ public class WarehouseResourceImpl implements WarehouseResource {
     } catch (IllegalArgumentException e) {
       throw new WebApplicationException(e.getMessage(), 400);
     }
+  }
+
+  @Override
+  public Response searchAndFilterWarehouses(String location, BigInteger minCapacity, BigInteger maxCapacity, String sortBy, String sortOrder, BigInteger page, BigInteger pageSize) {
+    // Set default values for optional parameters
+    String sortField = (sortBy != null) ? sortBy : "createdAt";
+    String sortDirection = (sortOrder != null && sortOrder.equalsIgnoreCase("desc")) ? "desc" : "asc";
+    int pageNumber = (page != null) ? page.intValue() : 0;
+    int pageSizeNumber = (pageSize != null) ? pageSize.intValue() : 10;
+
+    // Fetch filtered and paginated warehouses
+    List<com.fulfilment.application.monolith.warehouses.domain.models.Warehouse> warehouses = warehouseRepository.searchWarehouses(
+            location,
+            (minCapacity != null) ? minCapacity.intValue() : null,
+            (maxCapacity != null) ? maxCapacity.intValue() : null,
+            sortField,
+            sortDirection,
+            pageNumber,
+            pageSizeNumber
+    );
+
+    // Map domain model to API model
+    /*List<Warehouse> warehouseResponses = warehouses.stream()
+            .map(this::toWarehouseResponse)
+            .toList();*/
+
+    // Build paginated response using PageResult
+    long totalElements = warehouseRepository.count(); // Total number of warehouses
+    int totalPages = (int) Math.ceil((double) totalElements / pageSizeNumber);
+
+    PageResult<com.fulfilment.application.monolith.warehouses.domain.models.Warehouse> response = new PageResult<>(
+            warehouses,
+            totalElements,
+            totalPages,
+            pageNumber,
+            pageSizeNumber
+    );
+
+    return Response.ok(response).build();
   }
 
   private Warehouse toWarehouseResponse(

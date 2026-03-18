@@ -2,9 +2,14 @@ package com.fulfilment.application.monolith.warehouses.adapters.database;
 
 import com.fulfilment.application.monolith.warehouses.domain.models.Warehouse;
 import com.fulfilment.application.monolith.warehouses.domain.ports.WarehouseStore;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import io.quarkus.panache.common.Page;
 import jakarta.enterprise.context.ApplicationScoped;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @ApplicationScoped
 public class WarehouseRepository implements WarehouseStore, PanacheRepository<DbWarehouse> {
@@ -47,7 +52,13 @@ public class WarehouseRepository implements WarehouseStore, PanacheRepository<Db
   @Override
   public void remove(Warehouse warehouse) {
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'remove'");
+      DbWarehouse dbWarehouse = find("businessUnitCode", warehouse.businessUnitCode).firstResult();
+      if (dbWarehouse != null) {
+          delete(dbWarehouse);
+      } else {
+          throw new UnsupportedOperationException("Unimplemented method 'remove'");
+      }
+
   }
 
   @Override
@@ -55,4 +66,48 @@ public class WarehouseRepository implements WarehouseStore, PanacheRepository<Db
     DbWarehouse dbWarehouse = find("businessUnitCode", buCode).firstResult();
     return dbWarehouse != null ? dbWarehouse.toWarehouse() : null;
   }
+
+  public List<Warehouse> searchWarehouses(
+          String location,
+          Integer minCapacity,
+          Integer maxCapacity,
+          String sortField,
+          String sortDirection,
+          int pageNumber,
+          int pageSize) {
+
+      // Build the query dynamically
+      StringBuilder queryBuilder = new StringBuilder("1=1");
+      Map<String, Object> parameters = new HashMap<>();
+
+      if (location != null && !location.isEmpty()) {
+          queryBuilder.append(" AND location LIKE :location");
+          parameters.put("location", "%" + location + "%");
+      }
+      if (minCapacity != null) {
+          queryBuilder.append(" AND capacity >= :minCapacity");
+          parameters.put("minCapacity", minCapacity);
+      }
+      if (maxCapacity != null) {
+          queryBuilder.append(" AND capacity <= :maxCapacity");
+          parameters.put("maxCapacity", maxCapacity);
+      }
+
+      // Create the query
+      PanacheQuery<DbWarehouse> query = find(queryBuilder.toString(), parameters);
+
+    // Apply sorting
+    if (sortField != null && sortDirection != null) {
+      queryBuilder.append(" ORDER BY ").append(sortField).append(" ").append(sortDirection);
+    }
+
+      // Apply pagination
+      query = query.page(Page.of(pageNumber, pageSize));
+
+      // Map results to domain model
+      return query.list().stream()
+              .map(DbWarehouse::toWarehouse)
+              .toList();
+  }
+
 }
